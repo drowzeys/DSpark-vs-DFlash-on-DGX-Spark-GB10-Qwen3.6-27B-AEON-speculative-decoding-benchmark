@@ -1,0 +1,258 @@
+{
+ "DFlash": {
+  "1": {
+   "agg_tok_s": 24.5,
+   "per_req_tok_s": 24.5,
+   "accept": 0.3514,
+   "toks": 200,
+   "wall": 8.17
+  },
+  "2": {
+   "agg_tok_s": 31.9,
+   "per_req_tok_s": 17.2,
+   "accept": 0.4593,
+   "toks": 400,
+   "wall": 12.55
+  },
+  "3": {
+   "agg_tok_s": 51.8,
+   "per_req_tok_s": 20.6,
+   "accept": 0.343,
+   "toks": 600,
+   "wall": 11.59
+  },
+  "4": {
+   "agg_tok_s": 67.2,
+   "per_req_tok_s": 19.2,
+   "accept": 0.3952,
+   "toks": 800,
+   "wall": 11.9
+  },
+  "5": {
+   "agg_tok_s": 72.7,
+   "per_req_tok_s": 18.9,
+   "accept": 0.3858,
+   "toks": 1000,
+   "wall": 13.75
+  },
+  "6": {
+   "agg_tok_s": 100.8,
+   "per_req_tok_s": 20.5,
+   "accept": 0.4105,
+   "toks": 1200,
+   "wall": 11.9
+  },
+  "7": {
+   "agg_tok_s": 108.4,
+   "per_req_tok_s": 18.9,
+   "accept": 0.3855,
+   "toks": 1400,
+   "wall": 12.92
+  },
+  "8": {
+   "agg_tok_s": 112.4,
+   "per_req_tok_s": 18.1,
+   "accept": 0.3775,
+   "toks": 1600,
+   "wall": 14.24
+  },
+  "9": {
+   "agg_tok_s": 124.3,
+   "per_req_tok_s": 17.4,
+   "accept": 0.3725,
+   "toks": 1800,
+   "wall": 14.48
+  },
+  "10": {
+   "agg_tok_s": 120.0,
+   "per_req_tok_s": 16.7,
+   "accept": 0.3718,
+   "toks": 2000,
+   "wall": 16.66
+  },
+  "11": {
+   "agg_tok_s": 146.2,
+   "per_req_tok_s": 16.9,
+   "accept": 0.4075,
+   "toks": 2200,
+   "wall": 15.05
+  },
+  "12": {
+   "agg_tok_s": 147.4,
+   "per_req_tok_s": 15.6,
+   "accept": 0.3841,
+   "toks": 2400,
+   "wall": 16.28
+  },
+  "13": {
+   "agg_tok_s": 160.2,
+   "per_req_tok_s": 15.0,
+   "accept": 0.3836,
+   "toks": 2600,
+   "wall": 16.23
+  },
+  "14": {
+   "agg_tok_s": 167.9,
+   "per_req_tok_s": 15.5,
+   "accept": 0.4062,
+   "toks": 2800,
+   "wall": 16.67
+  },
+  "15": {
+   "agg_tok_s": 168.6,
+   "per_req_tok_s": 14.3,
+   "accept": 0.3948,
+   "toks": 3000,
+   "wall": 17.8
+  },
+  "16": {
+   "agg_tok_s": 179.1,
+   "per_req_tok_s": 13.6,
+   "accept": 0.3926,
+   "toks": 3200,
+   "wall": 17.87
+  },
+  "17": {
+   "agg_tok_s": 180.2,
+   "per_req_tok_s": 13.2,
+   "accept": 0.3869,
+   "toks": 3400,
+   "wall": 18.87
+  },
+  "18": {
+   "agg_tok_s": 173.5,
+   "per_req_tok_s": 12.1,
+   "accept": 0.3732,
+   "toks": 3600,
+   "wall": 20.74
+  }
+ },
+ "DSpark": {
+  "1": {
+   "agg_tok_s": 23.9,
+   "per_req_tok_s": 23.9,
+   "accept": 0.3652,
+   "toks": 200,
+   "wall": 8.37
+  },
+  "2": {
+   "agg_tok_s": 36.6,
+   "per_req_tok_s": 19.3,
+   "accept": 0.549,
+   "toks": 400,
+   "wall": 10.93
+  },
+  "3": {
+   "agg_tok_s": 59.8,
+   "per_req_tok_s": 24.2,
+   "accept": 0.4384,
+   "toks": 600,
+   "wall": 10.03
+  },
+  "4": {
+   "agg_tok_s": 65.3,
+   "per_req_tok_s": 20.1,
+   "accept": 0.4662,
+   "toks": 800,
+   "wall": 12.25
+  },
+  "5": {
+   "agg_tok_s": 76.5,
+   "per_req_tok_s": 19.0,
+   "accept": 0.464,
+   "toks": 1000,
+   "wall": 13.08
+  },
+  "6": {
+   "agg_tok_s": 91.2,
+   "per_req_tok_s": 20.4,
+   "accept": 0.4304,
+   "toks": 1200,
+   "wall": 13.16
+  },
+  "7": {
+   "agg_tok_s": 106.6,
+   "per_req_tok_s": 19.0,
+   "accept": 0.4316,
+   "toks": 1400,
+   "wall": 13.13
+  },
+  "8": {
+   "agg_tok_s": 119.0,
+   "per_req_tok_s": 20.1,
+   "accept": 0.4783,
+   "toks": 1600,
+   "wall": 13.45
+  },
+  "9": {
+   "agg_tok_s": 133.5,
+   "per_req_tok_s": 19.4,
+   "accept": 0.4755,
+   "toks": 1800,
+   "wall": 13.49
+  },
+  "10": {
+   "agg_tok_s": 129.6,
+   "per_req_tok_s": 16.9,
+   "accept": 0.4344,
+   "toks": 2000,
+   "wall": 15.43
+  },
+  "11": {
+   "agg_tok_s": 153.5,
+   "per_req_tok_s": 16.3,
+   "accept": 0.4492,
+   "toks": 2200,
+   "wall": 14.33
+  },
+  "12": {
+   "agg_tok_s": 157.8,
+   "per_req_tok_s": 16.9,
+   "accept": 0.478,
+   "toks": 2400,
+   "wall": 15.21
+  },
+  "13": {
+   "agg_tok_s": 173.0,
+   "per_req_tok_s": 16.3,
+   "accept": 0.4667,
+   "toks": 2600,
+   "wall": 15.03
+  },
+  "14": {
+   "agg_tok_s": 164.6,
+   "per_req_tok_s": 14.6,
+   "accept": 0.4285,
+   "toks": 2800,
+   "wall": 17.02
+  },
+  "15": {
+   "agg_tok_s": 163.2,
+   "per_req_tok_s": 13.8,
+   "accept": 0.4393,
+   "toks": 3000,
+   "wall": 18.39
+  },
+  "16": {
+   "agg_tok_s": 168.6,
+   "per_req_tok_s": 13.0,
+   "accept": 0.4337,
+   "toks": 3200,
+   "wall": 18.98
+  },
+  "17": {
+   "agg_tok_s": 174.0,
+   "per_req_tok_s": 13.0,
+   "accept": 0.4592,
+   "toks": 3400,
+   "wall": 19.54
+  },
+  "18": {
+   "agg_tok_s": 178.1,
+   "per_req_tok_s": 12.5,
+   "accept": 0.4511,
+   "toks": 3600,
+   "wall": 20.21
+  }
+ }
+}

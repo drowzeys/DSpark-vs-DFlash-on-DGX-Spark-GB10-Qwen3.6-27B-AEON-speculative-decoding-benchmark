@@ -1,0 +1,32 @@
+{
+ "code/DFlash": {
+  "tok_s": 22.82,
+  "accept": 0.3366,
+  "acc_len": 2.69
+ },
+ "code/DSpark": {
+  "tok_s": 25.87,
+  "accept": 0.4045,
+  "acc_len": 3.24
+ },
+ "math/DFlash": {
+  "tok_s": 28.97,
+  "accept": 0.4732,
+  "acc_len": 3.78
+ },
+ "math/DSpark": {
+  "tok_s": 33.04,
+  "accept": 0.5685,
+  "acc_len": 4.55
+ },
+ "chat/DFlash": {
+  "tok_s": 20.66,
+  "accept": 0.2886,
+  "acc_len": 2.31
+ },
+ "chat/DSpark": {
+  "tok_s": 23.58,
+  "accept": 0.3514,
+  "acc_len": 2.81
+ }
+}
