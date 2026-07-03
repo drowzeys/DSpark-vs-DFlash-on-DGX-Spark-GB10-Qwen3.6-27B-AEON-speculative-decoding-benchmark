@@ -22,8 +22,9 @@ method, and the serving image are theirs:
 - **hiyak** — *DSpark VanillaMarkov semi-AR draft head + training/serving method.*
   - Repo: <https://github.com/hikarioyama/dspark-aeon-27b>
   - Draft weights: <https://huggingface.co/Hikari07jp/DSpark-Qwen3.6-27B-AEON-draft>
-- **Aeon Forge** — *AEON vLLM Ultimate 0.24.0 (sm_121a/GB10) image + the Qwen3.6-27B-AEON NVFP4 target.*
-  - Repo: <https://github.com/AEON-7/vllm-ultimate-dgx-spark>
+- **Aeon Forge** — *AEON vLLM Ultimate 0.24.0 (sm_121a/GB10) image + the Qwen3.6-27B-AEON NVFP4 targets + the flagship DFlash recipe (Part 2).*
+  - Container repo: <https://github.com/AEON-7/vllm-ultimate-dgx-spark>
+  - Flagship model/recipe repo: <https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash>
   - Container: `ghcr.io/aeon-7/aeon-vllm-ultimate:2026-07-01-v0.24.0`
   - Models: <https://huggingface.co/AEON-7>
 - **DFlash baseline draft** — z-lab: <https://huggingface.co/z-lab/Qwen3.6-27B-DFlash>
@@ -154,13 +155,73 @@ Aggregate throughput (all in-flight requests) and spec-decode acceptance per arm
 
 ---
 
+## Part 2 — Reproducing AEON's flagship GB10 recipe ("the 133 tok/s")
+
+A separate experiment: reproduce **Aeon Forge's own** headline GB10 throughput using their
+**exact** flagship recipe + benchmark, rather than the DSpark harness above.
+
+- Flagship repo: <https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash>
+- Their published GB10 claim: **34–56 tok/s single-stream** (DFlash n=10), **144–219 tok/s aggregate at C=16**.
+
+**The key difference from Part 1 is the model body.** Their winning GB10 path uses
+`AEON-7/…-Multimodal-NVFP4-MTP-XS` — **21 GB, `modelopt` NVFP4**, with the GDN *projection*
+matmuls quantized to FP4 and only `linear_attn.conv1d` preserved in BF16 — **not** the 26 GB
+compressed-tensors target used in Part 1. Smaller weights → less bandwidth per verify step.
+Served with their `serve_qwen36_dflash.sh` (production profile): `--quantization modelopt`,
+`num_speculative_tokens 10` (their validated winner; n≥12 crashes), `--max-num-batched-tokens
+32768`, `--enable-chunked-prefill`, prefix-cache off, on `aeon-vllm-ultimate:latest`.
+Benchmarked with their `bench_aeon.py` — **greedy, thinking off, decode-only rate (excludes TTFT)**.
+
+### Table 4 — Single-stream, their `bench_aeon.py` (greedy, decode-only rate)
+
+| category | median tok/s |
+|---|---:|
+| code | **63.5** (peak 68.9) |
+| reasoning | 51.9 |
+| math | 49.8 |
+| longform | 25.6 |
+| security | 25.6 |
+| decode (256/512-tok free text) | 20.3 |
+| **overall median** | **39.3** (min 18.3 / max 68.9, TTFT ~266 ms) |
+
+→ **reproduces their 34–56 band.**
+
+### Table 5 — Aggregate throughput (greedy, thinking off, 200 tok/req)
+
+| C | aggregate tok/s |
+|---:|---:|
+| 1 | 55.0 |
+| 4 | 73.2 |
+| 8 | **135.3** |
+| 12 | 164.6 |
+| 16 | **184.4** |
+
+→ **clears 133 by C=8; C=16 lands inside their 144–219.**
+
+### What this adds to Part 1
+
+The ~19 tok/s single-stream in Part 1 was **not** the recipe's ceiling — it was four
+measurement/config gaps, each independently confirmed here:
+
+1. **Model** — the 21 GB XS `modelopt` body (GDN→FP4) vs the 26 GB compressed-tensors target.
+2. **Rate definition** — decode-only (excl. ~266 ms TTFT) vs end-to-end.
+3. **Sampling** — greedy vs temp=1.0.
+4. **Batching** — `max_num_batched_tokens 32768` vs the default **1936** (the scheduler warning).
+
+And it confirms Finding 1: **"133 tok/s" is an aggregate/concurrency figure, not single-stream.**
+GB10's ~273 GB/s bandwidth caps single-stream at ~56–69 tok/s for this model, so 133 is only
+reachable by batching — here, by **C=8**.
+
+---
+
 ## Reproduction
 
 - `scripts/serve-docker.sh <name> <draft_dir>` — serve the target with a chosen draft in the AEON 0.24 container (bind-mounts the ported files + persistent compile cache).
 - `scripts/ab_bench.py` — single-stream 2-node A/B (Table 1).
 - `scripts/conc_sweep.py` — concurrency sweep 1→18 (Table 3).
+- `scripts/serve-flagship.sh` — runs AEON's flagship `serve_qwen36_dflash.sh` (XS body, n=10, `modelopt`) in the container (Part 2). Their serve + bench scripts live in [their repo](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash).
 - `patches/do_port.py` — regenerates the 0.23→0.24 patched vLLM files; `patches/{qwen3_dflash.py,llm_base_proposer.py}` are the generated results.
-- `results/*.json` — raw measurements.
+- `results/*.json`, `results/flagship_*` — raw measurements.
 
 ## License / disclaimer
 

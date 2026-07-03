@@ -1,0 +1,14 @@
+AEON flagship recipe — their bench_aeon.py (greedy, thinking off, decode-only rate excl TTFT)
+Model: AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-Multimodal-NVFP4-MTP-XS (21GB modelopt)
+Drafter: z-lab/Qwen3.6-27B-DFlash, DFlash n=10, aeon-vllm-ultimate:latest, single GB10.
+
+By category (median tok/s):
+  code       63.5  (n=3)   [Code Python 68.9, Code SQL 63.5, Code Rust 26.8]
+  reasoning  51.9  (n=1)
+  math       49.8  (n=3)   [Math word 58.3, Math calculus 49.8, Math arithmetic ~]
+  longform   25.6  (n=1)
+  security   25.6  (n=1)
+  decode     20.3  (n=2)   [256/512-tok continuous free text]
+
+Summary: median 39.3 tok/s | min 18.3 / max 68.9 | median TTFT 266 ms
+=> reproduces AEON's published 34-56 tok/s single-stream band.
